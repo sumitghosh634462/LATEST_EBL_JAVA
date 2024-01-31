@@ -1,6 +1,5 @@
 package com.wecp.progressive.controller;
 
-
 import com.wecp.progressive.entity.Customers;
 import com.wecp.progressive.entity.Transactions;
 import com.wecp.progressive.service.CustomerService;
@@ -32,11 +31,13 @@ public class CustomerController {
 
     @PostMapping
     public ResponseEntity<Integer> addCustomer(@RequestBody Customers customers) throws SQLException {
-        return new ResponseEntity<Integer>(customerService.addCustomer(customers), HttpStatus.OK);
+        return new ResponseEntity<Integer>(customerService.addCustomer(customers), HttpStatus.CREATED);
     }
 
     @PutMapping("/{customerId}")
-    public ResponseEntity<Void> updateCustomer(@PathVariable int customerId, @RequestBody Customers customers) throws SQLException {
+    public ResponseEntity<Void> updateCustomer(@PathVariable int customerId, @RequestBody Customers customers)
+            throws SQLException {
+        customers.setCustomerId(customerId);
         customerService.updateCustomer(customers);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -48,6 +49,23 @@ public class CustomerController {
     }
 
     public ResponseEntity<List<Transactions>> getAllTransactionsByCustomerId(int cutomerId) {
-        return null;
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/fromArrayList")
+    public ResponseEntity<List<Customers>> getAllCustomersFromArrayList() {
+        return new ResponseEntity<List<Customers>>(customerService.getAllCustomersFromArrayList(), HttpStatus.OK);
+    }
+
+    @PostMapping("/toArrayList")
+    public ResponseEntity<List<Customers>> addCustomerToArrayList(@RequestBody Customers customers) {
+        return new ResponseEntity<List<Customers>>(customerService.addCustomersToArrayList(customers), HttpStatus.OK);
+    }
+
+    @GetMapping("/fromArrayList/{customerId}")
+    public ResponseEntity<List<Customers>> getAllCustomersSortedByNameFromArrayList(@PathVariable int customerID) {
+        return new ResponseEntity<List<Customers>>(customerService.getAllCustomersSortedByNameFromArrayList(),
+                HttpStatus.OK);
+
     }
 }
