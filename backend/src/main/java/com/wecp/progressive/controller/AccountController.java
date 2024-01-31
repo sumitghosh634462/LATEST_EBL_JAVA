@@ -22,6 +22,7 @@ public class AccountController {
     public ResponseEntity<List<Accounts>> getAllAccounts() throws SQLException {
         return new ResponseEntity<>(accountService.getAllAccounts(), HttpStatus.OK);
     }
+
     @GetMapping("/{accountId}")
     public ResponseEntity<Accounts> getAccountById(@PathVariable int accountId) throws SQLException {
         return new ResponseEntity<Accounts>(accountService.getAccountById(accountId), HttpStatus.OK);
@@ -32,16 +33,20 @@ public class AccountController {
         // ResponseEntity<>(accountService.getAccountsByUser(param),HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @PostMapping
     public ResponseEntity<Integer> addAccount(@RequestBody Accounts accounts) throws SQLException {
         return new ResponseEntity<>(accountService.addAccount(accounts), HttpStatus.CREATED);
     }
+
     @PutMapping("/{accountId}")
-    public ResponseEntity<Void> updateAccount(@PathVariable int accountId,@RequestBody Accounts accounts) throws SQLException {
+    public ResponseEntity<Void> updateAccount(@PathVariable int accountId, @RequestBody Accounts accounts)
+            throws SQLException {
         accounts.setAccountId(accountId);
         accountService.updateAccount(accounts);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @DeleteMapping("/{accountId}")
     public ResponseEntity<Void> deleteAccount(int accountId) throws SQLException {
         accountService.deleteAccount(accountId);
