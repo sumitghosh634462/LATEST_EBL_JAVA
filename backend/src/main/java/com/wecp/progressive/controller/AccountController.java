@@ -30,8 +30,8 @@ public class AccountController {
 
     public ResponseEntity<List<Accounts>> getAccountsByUser(String param) throws SQLException {
         // return new
-        // ResponseEntity<>(accountService.getAccountsByUser(param),HttpStatus.OK);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new  ResponseEntity<>(accountService.getAccountsByUser(Integer.parseInt(param)),HttpStatus.OK);
+        
     }
 
     @PostMapping

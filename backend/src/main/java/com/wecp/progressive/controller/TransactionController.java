@@ -16,34 +16,28 @@ import java.util.List;
 public class TransactionController {
 
     @Autowired
-    TransactionService transactionService;
+    private TransactionService transactionService;
 
     @GetMapping
     public ResponseEntity<List<Transactions>> getAllTransactions() throws SQLException {
-        return new ResponseEntity<>(transactionService.getAllTransactions(), HttpStatus.OK);
+        return new ResponseEntity<List<Transactions>>(transactionService.getAllTransactions(), HttpStatus.OK);
     }
 
     @GetMapping("/{transactionId}")
     public ResponseEntity<Transactions> getTransactionById(@PathVariable int transactionId) throws SQLException {
-        return new ResponseEntity<>(transactionService.getTransactionById(transactionId), HttpStatus.OK);
+        return new ResponseEntity<Transactions>(transactionService.getTransactionById(transactionId), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Integer> addTransaction(@RequestBody Transactions transaction) throws SQLException {
-        return new ResponseEntity<>(transactionService.addTransaction(transaction), HttpStatus.CREATED);
+    public ResponseEntity<Integer> addTransaction(Transactions transaction) throws SQLException {
+        return new ResponseEntity<Integer>(transactionService.addTransaction(transaction), HttpStatus.CREATED);
     }
 
-    @PutMapping("/{transactionId}")
-    public ResponseEntity<Void> updateTransaction(@PathVariable int transactionId,
-            @RequestBody Transactions transaction) throws SQLException {
-        transaction.setTransactionId(transactionId);
-        transactionService.updateTransaction(transaction);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<Void> updateTransaction(int transactionId, Transactions transaction) {
+        return null;
     }
 
-    @DeleteMapping("/{transactionId}")
-    public ResponseEntity<Void> deleteTransaction(@PathVariable int transactionId) throws SQLException {
-        transactionService.deleteTransaction(transactionId);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<Void> deleteTransaction(int transactionId) {
+        return null;
     }
 }

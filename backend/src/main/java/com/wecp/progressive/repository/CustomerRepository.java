@@ -7,8 +7,6 @@ import com.wecp.progressive.entity.Customers;
 
 
 @Repository
-public interface CustomerRepository extends JpaRepository<Customers,Integer>{
-
-    public Customers findByCustomerId(int customerId);
-
+public interface CustomerRepository extends JpaRepository<Customers, Integer> {
+    public Customers findByCustomerId(int id);
 }

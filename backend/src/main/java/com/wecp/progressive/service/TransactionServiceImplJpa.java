@@ -1,7 +1,6 @@
 package com.wecp.progressive.service;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +14,14 @@ import com.wecp.progressive.repository.TransactionRepository;
 public class TransactionServiceImplJpa implements TransactionService {
 
     @Autowired
-    TransactionRepository transactionRepository;
+    private TransactionRepository transactionRepository;
 
     @Autowired
-    AccountRepository accountRepository;
+    private AccountRepository accountRepository;
 
-    private static List<Transactions> transactions = new ArrayList<>();
+    public TransactionServiceImplJpa() {
+
+    }
 
     public TransactionServiceImplJpa(TransactionRepository transactionRepository, AccountRepository accountRepository) {
         this.transactionRepository = transactionRepository;
@@ -44,23 +45,20 @@ public class TransactionServiceImplJpa implements TransactionService {
 
     @Override
     public void updateTransaction(Transactions transaction) throws SQLException {
-        transactionRepository.findById(transaction.getTransactionId()).map(transactions->{
-            transactions.setAccountId(transaction.getAccountId());
-            transactions.setAmount(transaction.getAmount());
-            transactions.setTransactionDate(transaction.getTransactionDate());
-            transactions.setTransactionType(transaction.getTransactionType());
-            return transactionRepository.save(transactions);
-        });
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'updateTransaction'");
     }
 
     @Override
     public void deleteTransaction(int transactionId) throws SQLException {
-        transactionRepository.deleteById(transactionId);
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'deleteTransaction'");
     }
 
     @Override
     public List<Transactions> getTransactionsByCustomerId(int customerId) throws SQLException {
-       return null;
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getTransactionsByCustomerId'");
     }
 
 }
