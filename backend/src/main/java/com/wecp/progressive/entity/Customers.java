@@ -7,6 +7,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Customers implements Comparable<Customers> {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int customerId;
